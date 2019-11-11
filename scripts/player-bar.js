@@ -22,7 +22,7 @@
   $('button#previous').click( 'click', function() {
     if (player.playState !== 'playing') { return; }
 
-    //I didn't declare the currentSongIndex variable again since it's declared in the prior function.
+    const currentSongIndex = album.songs.indexOf(player.currentlyPlaying)
     const prevSongIndex = currentSongIndex - 1; //takes the current song index and subtracts one to get previous song index
     const prevSong = album.songs[prevSongIndex]; //pulls the song from the album object via the prevSongIndex value.
     if (prevSongIndex < 0) { return; } //if the previous song index is less then zero exit function
