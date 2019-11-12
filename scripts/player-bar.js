@@ -29,4 +29,19 @@
     player.playPause(prevSong); //otherwise it will play the previous song
 
   });
+
+  $('#time-control input').on('input', function(event) {
+    player.skipTo(event.target.value)
+  });
+
+  setInterval( () => {
+    if (player.playState !== 'playing') { return; }
+    const currentTime = player.getTime(); //grabs the part of the song that's played
+    const duration = player.getDuration(); // grabs the entire duration of the songs
+    const percent = (currentTime / duration) * 100;
+    $('#time-control .current-time').text(currentTime); //the current time gets passed in to HTML as text
+    $('#time-control input').val(percent); //this sets the inputs value in the HTML to whatever is calculated for the percent.
+  }, 1000);
+
+
 }
